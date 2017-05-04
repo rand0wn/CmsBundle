@@ -31,9 +31,9 @@ class PageController extends BaseController
      */
     public function indexAction($parentId = null, Request $request)
     {
-        $arguments = array(
+        $arguments = [
             'parent.id' => $parentId,
-        );
+        ];
 
         $indexController = $this->get('bk.wh.back.index_controller');
 
@@ -75,11 +75,11 @@ class PageController extends BaseController
 
         $data = $em->getRepository($updateController->getRepositoryName($entityPathConfig))->get(
             'one',
-            array(
-                'conditions' => array(
+            [
+                'conditions' => [
                     Inflector::camelize($entityPathConfig['entity']) . '.id' => $id,
-                ),
-            )
+                ],
+            ]
         );
 
         if (!$data) {
@@ -94,10 +94,10 @@ class PageController extends BaseController
         if (!empty($pageTemplate['backendController'])) {
             return $this->forward(
                 $pageTemplate['backendController'] . ':update',
-                array(
-                    'id' => $id,
+                [
+                    'id'      => $id,
                     'request' => $request,
-                )
+                ]
             );
         }
 

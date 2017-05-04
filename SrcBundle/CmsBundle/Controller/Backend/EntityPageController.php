@@ -29,12 +29,12 @@ class EntityPageController extends BaseController
 
         $entityPathConfig = $this->getEntityPathConfig();
 
-        $entityPathConfigPage = array(
+        $entityPathConfigPage = [
             'bundlePrefix' => '',
             'bundle'       => 'CmsBundle',
             'entity'       => 'Page',
             'type'         => 'Backend',
-        );
+        ];
 
         $updateController->entityPathConfig = $entityPathConfig;
         $updateController->request = $request;
@@ -43,11 +43,11 @@ class EntityPageController extends BaseController
 
         $data = $em->getRepository($updateController->getRepositoryName($entityPathConfig))->get(
             'one',
-            array(
-                'conditions' => array(
+            [
+                'conditions' => [
                     'page.id' => $id,
-                ),
-            )
+                ],
+            ]
         );
 
         if (!$data) {
@@ -56,11 +56,11 @@ class EntityPageController extends BaseController
 
             $page = $em->getRepository($this->getRepositoryName($entityPathConfigPage))->get(
                 'one',
-                array(
-                    'conditions' => array(
+                [
+                    'conditions' => [
                         'page.id' => $id,
-                    ),
-                )
+                    ],
+                ]
             );
             $entity->setPage($page);
 

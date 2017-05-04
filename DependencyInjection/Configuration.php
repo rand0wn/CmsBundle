@@ -13,32 +13,32 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getConfigTreeBuilder()
-	{
-		$treeBuilder = new TreeBuilder();
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfigTreeBuilder()
+    {
+        $treeBuilder = new TreeBuilder();
 
-		return $treeBuilder
-			->root('wh_cms', 'array')
-				->children()
-					->arrayNode('templates')
-						->prototype('array')
-							->children()
-								->scalarNode('name')->end()
-								->scalarNode('backendController')->end()
-								->scalarNode('frontController')->end()
-								->scalarNode('frontView')->end()
-								->scalarNode('updateConfig')->end()
-							->end()
-						->end()
-					->end()
-					->arrayNode('menus')
-						->prototype('scalar')
-						->end()
-					->end()
-				->end()
-			->end();
-	}
+        return $treeBuilder
+            ->root('wh_cms', 'array')
+            ->children()
+            ->arrayNode('templates')
+            ->prototype('array')
+            ->children()
+            ->scalarNode('name')->end()
+            ->scalarNode('backendController')->end()
+            ->scalarNode('frontController')->end()
+            ->scalarNode('frontView')->end()
+            ->scalarNode('updateConfig')->end()
+            ->end()
+            ->end()
+            ->end()
+            ->arrayNode('menus')
+            ->prototype('scalar')
+            ->end()
+            ->end()
+            ->end()
+            ->end();
+    }
 }

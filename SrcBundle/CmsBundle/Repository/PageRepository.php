@@ -11,38 +11,20 @@ use WH\LibBundle\Repository\BaseTreeRepository;
  */
 class PageRepository extends BaseTreeRepository
 {
+    public $entityName = 'page';
 
-    public $joins = array(
-        'parent' => array(),
-        'url'    => array(),
-        'metas'  => array(),
-    );
+    public $joins = [
+        'url'    => '',
+        'metas'  => '',
+        'parent' => '',
+    ];
 
-    /**
-     * @return string
-     */
-    public function getEntityNameQueryBuilder()
-    {
-        return 'page';
-    }
-
-    /**
-     * @return \Doctrine\ORM\QueryBuilder
-     */
-    public function getBaseQuery()
-    {
-        $this->qb = $this
-            ->createQueryBuilder($this->getEntityNameQueryBuilder())
-            ->orderBy('page.lft', 'ASC');
-
-        $this->addJoins(
-            array(
-                'parent',
-                'url',
-                'metas',
-            )
-        );
-
-        return $this->qb;
-    }
+    public $baseJoins = [
+        'url',
+        'metas',
+        'parent',
+    ];
+    public $baseOrders = [
+        'page.lft' => 'ASC',
+    ];
 }
